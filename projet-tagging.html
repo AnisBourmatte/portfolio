@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+    <script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moteur de tagging d'incidents · Anis BOURMATTE</title>
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="brand">Anis BOURMATTE<span class="dot">.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+        <a href="index.html#apropos">À propos</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#projets">Projets</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-hero">
+        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+        <div class="detail-meta">
+            <span class="chip-mini">Python</span>
+            <span class="chip-mini">ServiceNow API</span>
+            <span class="chip-mini">Rules engine</span>
+            <span class="chip-mini">Mission principale</span>
+        </div>
+        <h1>Moteur de tagging automatique d'incidents</h1>
+        <p class="hero-role">Classer automatiquement des centaines d'incidents — vite, et sans jamais se tromper sur les plus critiques.</p>
+        <img class="detail-cover" src="img/cover-tagging.svg" alt="Pipeline : incident → moteur de règles → tag">
+    </section>
+
+    <section class="detail-body">
+        <div class="detail-layout">
+            <div class="prose">
+                <h2>Le contexte</h2>
+                <p>Sur le Cloud du groupe, chaque problème (panne, lenteur, dysfonctionnement) ouvre un <em>ticket d'incident</em>. Avant tout traitement, ce ticket doit être <strong>étiqueté</strong> : on lui associe une ou plusieurs étiquettes qui décrivent la nature du problème. C'est ce qui permet ensuite de l'orienter vers la bonne équipe, de le filtrer et de le suivre — un peu comme un courrier qu'il faut trier dans des boîtes clairement identifiées avant de pouvoir le distribuer.</p>
+                <p>Aujourd'hui, cet étiquetage est fait <strong>entièrement à la main</strong> par une équipe transversale, la <strong>Contrôle Tower</strong>, qui traite environ <strong>300 incidents par semaine</strong>. Le procédé montre vite ses limites : il est long et répétitif, la logique d'étiquetage repose surtout sur l'expérience des experts (elle n'est pas écrite), et selon la personne, un même incident peut être étiqueté différemment.</p>
+
+                <h2>L'objectif</h2>
+                <p>La mission avait un double objectif : <strong>automatiser l'étiquetage des incidents simples</strong>, et <strong>constituer une première base d'incidents correctement étiquetés</strong>. Cette base fiabilise le traitement d'aujourd'hui, mais elle prépare aussi demain : elle servira à entraîner une intelligence artificielle capable de gérer les cas plus complexes.</p>
+                <p>J'ai donc séparé le problème en deux. Les <strong>cas simples</strong>, où l'information est claire dans les champs du ticket et où l'étiquette se déduit directement, sont automatisables de façon fiable : c'est la <strong>Phase 1</strong>, celle que j'ai réalisée. Les <strong>cas complexes</strong>, où l'information est implicite ou noyée dans du texte libre, restent traités à la main pour l'instant — ce sera l'objet de la Phase 2 (IA).</p>
+
+                <h2>Ma solution : un moteur de règles</h2>
+                <p>J'ai conçu en Python un <strong>moteur de règles</strong> qui fonctionne comme un livre de recettes : « si l'incident contient telle information, alors je lui mets telle étiquette ». Pour écrire ces recettes, j'ai mené un atelier avec chaque équipe afin d'identifier, pour les incidents qu'elle traite, sur quels champs et quels mots-clés se baser — uniquement pour les cas simples. La <strong>Contrôle Tower a ensuite validé l'ensemble des règles</strong>.</p>
+                <p>Au total, le fichier compte <strong>60 règles couvrant 3 étiquettes</strong>. Quand un incident peut correspondre à plusieurs règles, une <strong>priorité</strong> permet de trancher. Et si la correspondance n'est pas assez sûre, le script préfère <strong>ne rien mettre</strong> : c'est le « cas contraire ». Le principe directeur tout au long du projet : <em>on préfère ne rien dire que de se tromper</em>.</p>
+
+                <h2>Pourquoi des règles plutôt qu'une IA d'emblée</h2>
+                <p>Une IA a besoin d'une grande quantité d'exemples déjà étiquetés pour apprendre — exemples qui n'existaient pas encore. Le moteur de règles répond aux deux besoins à la fois : il traite tout de suite les cas simples, <em>et</em> il produit la base d'exemples nécessaire à la future IA. À cela s'ajoute une exigence propre au contexte bancaire : la <strong>transparence et le contrôle</strong>. On doit pouvoir expliquer pourquoi un incident a été classé d'une certaine façon, ce qu'une « boîte noire » ne permet pas.</p>
+
+                <h2>Les contraintes d'un contexte bancaire</h2>
+                <p>Quatre contraintes ont guidé toute la conception :</p>
+                <ul>
+                    <li><strong>Fiabilité</strong> — en cas de doute, ne pas étiqueter plutôt que risquer une erreur.</li>
+                    <li><strong>Sécurité</strong> — les tickets pouvant contenir des données sensibles, tout le traitement reste dans l'environnement interne de BNP Paribas.</li>
+                    <li><strong>Évolutivité</strong> — pouvoir ajouter ou modifier une règle sans reconstruire le programme.</li>
+                    <li><strong>Autonomie du métier</strong> — c'est pour cela que les règles sont <strong>externalisées dans un fichier JSON</strong>, séparé du code : la Contrôle Tower fait évoluer ses règles elle-même, sans dépendre d'un développeur.</li>
+                </ul>
+
+                <h2>La chaîne de traitement</h2>
+                <p>Le script traite les incidents un par un, toujours selon la même chaîne :</p>
+                <ol>
+                    <li><strong>Appel à l'API ServiceNow</strong> — récupération automatique des incidents à traiter.</li>
+                    <li><strong>Pré-traitement du texte</strong> — on nettoie le contenu et on ne garde que les informations utiles.</li>
+                    <li><strong>Vérification des règles</strong> — on recherche les mots-clés et on applique les recettes du fichier.</li>
+                    <li><strong>Étiquette attribuée</strong> — uniquement pour les cas simples ; sinon, l'incident est laissé pour un traitement manuel.</li>
+                </ol>
+
+                <h2>Le suivi et la mise en production</h2>
+                <p>À chaque exécution, le script enregistre son travail dans une base <strong>PostgreSQL</strong> : pour chaque incident, l'étiquette proposée <em>et</em> la règle qui l'a déclenchée. Cette trace est précieuse pour suivre les statistiques de l'outil et vérifier qu'il reste fiable dans la durée.</p>
+                <p>L'industrialisation s'est faite prudemment. En développement, le script <strong>n'écrivait rien dans ServiceNow</strong> : il ne remplissait que la base, relue et validée par la Contrôle Tower — aucun risque pour l'outil officiel. Une fois franchi le seuil de <strong>plus de 90 % de bonnes étiquettes</strong> sur les cas simples, il est passé en <strong>production</strong> : il s'exécute désormais seul <strong>une fois par jour, chaque matin</strong>, met à jour ServiceNow et la base, avec des journaux (logs) pour repérer toute anomalie.</p>
+
+                <h2>Les résultats</h2>
+                <ul>
+                    <li>Sur un échantillon de <strong>500 incidents simples</strong> vérifiés à la main, <strong>plus de 90 % ont reçu la bonne étiquette</strong> — ce qui a justifié le passage en production.</li>
+                    <li><strong>Aucune étiquette forcée</strong> sur les cas incertains : ils restent traités à la main, sans risque de mauvaise classification.</li>
+                    <li>Le moteur tourne <strong>chaque jour en production</strong> et fait gagner à l'équipe un temps auparavant consacré à une tâche répétitive.</li>
+                </ul>
+                <p>Mais le résultat dont je suis le plus fier n'est pas un chiffre : c'est d'avoir transformé un <strong>savoir qui n'existait qu'à l'oral en une base écrite, fiable et réutilisable</strong> pour la suite du projet.</p>
+
+                <h2>La suite — Phase 2</h2>
+                <p>La prochaine étape est de tester un <strong>modèle d'IA (NLP, type BERT)</strong> capable de lire le texte libre pour traiter les cas complexes que les règles ne couvrent pas. Les incidents déjà étiquetés en Phase 1 serviront précisément d'exemples pour l'entraîner. L'objectif : une approche <strong>hybride règles + apprentissage</strong>, qui garde la fiabilité des règles tout en gagnant la souplesse du machine learning.</p>
+            </div>
+
+            <aside class="aside-card">
+                <div class="callout">
+                    <div class="big">&gt;90%</div>
+                    <div class="lbl">de bonnes étiquettes sur 500 incidents simples vérifiés</div>
+                </div>
+                <h3>// fiche projet</h3>
+                <div class="aside-stack">
+                    <div class="id-row"><span class="k">Rôle</span><span class="v">Conception &amp; dev</span></div>
+                    <div class="id-row"><span class="k">Contexte</span><span class="v">Alternance BP2I</span></div>
+                    <div class="id-row"><span class="k">Règles</span><span class="v">60 · 3 étiquettes</span></div>
+                    <div class="id-row"><span class="k">Exécution</span><span class="v">1×/jour (prod)</span></div>
+                    <div class="id-row"><span class="k">Statut</span><span class="v">En production · phase 2 à venir</span></div>
+                </div>
+                <div style="margin-top:18px;">
+                    <span class="chip-mini">Python</span>
+                    <span class="chip-mini">JSON</span>
+                    <span class="chip-mini">ServiceNow API</span>
+                    <span class="chip-mini">PostgreSQL</span>
+                    <span class="chip-mini">BERT (à venir)</span>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <a href="index.html#projets" class="to-top">↑ Voir les autres projets</a>
+    <p>Anis BOURMATTE</p>
+    <p class="small">© 2026 — Portfolio · BUT Informatique</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
