@@ -1,0 +1,44 @@
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline de tagging automatique d'incidents">
+  <defs>
+    <linearGradient id="bgT" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1F3A"/><stop offset="1" stop-color="#13294B"/>
+    </linearGradient>
+    <pattern id="dotsT" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#ffffff" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" fill="url(#bgT)"/>
+  <rect width="640" height="360" fill="url(#dotsT)"/>
+
+  <!-- arrows -->
+  <line x1="178" y1="180" x2="262" y2="180" stroke="#16A5A2" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <line x1="382" y1="180" x2="466" y2="180" stroke="#16A5A2" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+
+  <!-- incident ticket -->
+  <g>
+    <rect x="62" y="128" width="104" height="104" rx="14" fill="#13294B" stroke="#3A4E72" stroke-width="1.5"/>
+    <rect x="80" y="150" width="56" height="6" rx="3" fill="#16A5A2"/>
+    <rect x="80" y="168" width="68" height="5" rx="2.5" fill="#7E90A8"/>
+    <rect x="80" y="182" width="50" height="5" rx="2.5" fill="#7E90A8"/>
+    <rect x="80" y="196" width="62" height="5" rx="2.5" fill="#7E90A8"/>
+    <text x="114" y="252" font-family="monospace" font-size="13" fill="#9FB0C6" text-anchor="middle">incident</text>
+  </g>
+
+  <!-- rules engine (gear + braces) -->
+  <g>
+    <rect x="268" y="120" width="108" height="120" rx="16" fill="#0E7C7B"/>
+    <text x="322" y="160" font-family="monospace" font-size="20" fill="#CFEAE9" text-anchor="middle">{ }</text>
+    <rect x="290" y="176" width="64" height="5" rx="2.5" fill="#CFEAE9" opacity="0.85"/>
+    <rect x="290" y="189" width="48" height="5" rx="2.5" fill="#CFEAE9" opacity="0.6"/>
+    <rect x="290" y="202" width="56" height="5" rx="2.5" fill="#CFEAE9" opacity="0.6"/>
+    <text x="322" y="262" font-family="monospace" font-size="13" fill="#9FB0C6" text-anchor="middle">rules.json</text>
+  </g>
+
+  <!-- tag output -->
+  <g>
+    <rect x="472" y="146" width="112" height="68" rx="34" fill="#13294B" stroke="#16A5A2" stroke-width="2"/>
+    <circle cx="502" cy="180" r="7" fill="#16A5A2"/>
+    <text x="538" y="185" font-family="monospace" font-size="15" fill="#CFEAE9" text-anchor="middle">TAG</text>
+    <text x="528" y="246" font-family="monospace" font-size="13" fill="#9FB0C6" text-anchor="middle">classé</text>
+  </g>
+</svg>

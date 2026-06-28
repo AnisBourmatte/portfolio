@@ -1,0 +1,49 @@
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entrepôt de données : schéma en constellation">
+  <defs>
+    <linearGradient id="bgE" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1F3A"/><stop offset="1" stop-color="#13294B"/>
+    </linearGradient>
+    <pattern id="dotsE" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#ffffff" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" fill="url(#bgE)"/>
+  <rect width="640" height="360" fill="url(#dotsE)"/>
+
+  <!-- links -->
+  <g stroke="#16A5A2" stroke-width="2" opacity="0.55">
+    <line x1="320" y1="180" x2="150" y2="86"/>
+    <line x1="320" y1="180" x2="150" y2="274"/>
+    <line x1="320" y1="180" x2="490" y2="86"/>
+    <line x1="320" y1="180" x2="490" y2="274"/>
+  </g>
+
+  <!-- dimension tables -->
+  <g font-family="monospace" font-size="11" fill="#9FB0C6" text-anchor="middle">
+    <rect x="96" y="56" width="108" height="58" rx="9" fill="#13294B" stroke="#3A4E72" stroke-width="1.4"/>
+    <rect x="108" y="68" width="60" height="5" rx="2.5" fill="#7E90A8"/><rect x="108" y="80" width="84" height="4" rx="2" fill="#445876"/><rect x="108" y="91" width="72" height="4" rx="2" fill="#445876"/>
+    <text x="150" y="132">dim_ville</text>
+
+    <rect x="96" y="244" width="108" height="58" rx="9" fill="#13294B" stroke="#3A4E72" stroke-width="1.4"/>
+    <rect x="108" y="256" width="60" height="5" rx="2.5" fill="#7E90A8"/><rect x="108" y="268" width="84" height="4" rx="2" fill="#445876"/><rect x="108" y="279" width="72" height="4" rx="2" fill="#445876"/>
+    <text x="150" y="320">dim_temps</text>
+
+    <rect x="436" y="56" width="108" height="58" rx="9" fill="#13294B" stroke="#3A4E72" stroke-width="1.4"/>
+    <rect x="448" y="68" width="60" height="5" rx="2.5" fill="#7E90A8"/><rect x="448" y="80" width="84" height="4" rx="2" fill="#445876"/><rect x="448" y="91" width="72" height="4" rx="2" fill="#445876"/>
+    <text x="490" y="132">dim_polluant</text>
+
+    <rect x="436" y="244" width="108" height="58" rx="9" fill="#13294B" stroke="#3A4E72" stroke-width="1.4"/>
+    <rect x="448" y="256" width="60" height="5" rx="2.5" fill="#7E90A8"/><rect x="448" y="268" width="84" height="4" rx="2" fill="#445876"/><rect x="448" y="279" width="72" height="4" rx="2" fill="#445876"/>
+    <text x="490" y="320">dim_pays</text>
+  </g>
+
+  <!-- central fact table -->
+  <g>
+    <rect x="258" y="138" width="124" height="84" rx="12" fill="#0E7C7B"/>
+    <rect x="274" y="156" width="80" height="6" rx="3" fill="#CFEAE9"/>
+    <rect x="274" y="172" width="92" height="5" rx="2.5" fill="#CFEAE9" opacity="0.7"/>
+    <rect x="274" y="184" width="68" height="5" rx="2.5" fill="#CFEAE9" opacity="0.7"/>
+    <rect x="274" y="196" width="80" height="5" rx="2.5" fill="#CFEAE9" opacity="0.7"/>
+    <text x="320" y="244" font-family="monospace" font-size="12" fill="#CFEAE9" text-anchor="middle">fait_mesure</text>
+  </g>
+</svg>

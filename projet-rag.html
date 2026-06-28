@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+    <script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot RAG · Anis BOURMATTE</title>
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="brand">Anis BOURMATTE<span class="dot">.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+        <a href="index.html#apropos">À propos</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#projets">Projets</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-hero">
+        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+        <div class="detail-meta">
+            <span class="chip-mini">LLM</span>
+            <span class="chip-mini">RAG</span>
+            <span class="chip-mini">POC validé</span>
+        </div>
+        <h1>Chatbot RAG sur la documentation interne</h1>
+        <p class="hero-role">Répondre aux questions de l'équipe en s'appuyant sur la vraie documentation — pas sur les inventions d'un modèle.</p>
+        <img class="detail-cover" src="img/cover-rag.svg" alt="Documents → récupération → LLM → réponse">
+    </section>
+
+    <section class="detail-body">
+        <div class="detail-layout">
+            <div class="prose">
+                <h2>Le problème</h2>
+                <p>La documentation interne est riche mais <strong>éparpillée</strong> : pour retrouver la bonne procédure, on perd du temps, et les mêmes questions reviennent souvent. Un simple modèle de langage ne suffit pas : laissé seul, il peut <strong>inventer</strong> des réponses plausibles mais fausses.</p>
+
+                <h2>Ma solution : le RAG</h2>
+                <p>J'ai conçu un assistant basé sur le <strong>RAG (Retrieval-Augmented Generation)</strong>. L'image que j'aime utiliser : c'est un <strong>bibliothécaire</strong>. Quand on pose une question, il va d'abord chercher les bons passages dans la documentation, puis rédige une réponse <strong>fondée sur ces documents</strong> — et seulement sur eux.</p>
+                <p>Le fonctionnement, en quatre temps : on indexe la documentation, on retrouve les passages les plus pertinents pour la question, on les fournit au modèle de langage comme contexte, et le modèle formule une réponse ancrée dans les sources.</p>
+
+                <h2>Pourquoi c'est important</h2>
+                <p>Cette architecture <strong>réduit fortement les hallucinations</strong> : les réponses restent rattachées à la documentation réelle. Dans un environnement professionnel, c'est la condition pour qu'un assistant soit utilisable et digne de confiance.</p>
+
+                <h2>Le résultat</h2>
+                <ul>
+                    <li>Un <strong>POC fonctionnel</strong>, capable de répondre à partir de la documentation interne.</li>
+                    <li>Un POC <strong>validé par la direction</strong> — un vrai feu vert sur l'approche.</li>
+                    <li>Une base solide pour passer, à terme, du prototype à un outil au service de l'équipe.</li>
+                </ul>
+            </div>
+
+            <aside class="aside-card">
+                <div class="callout">
+                    <div class="big">POC ✓</div>
+                    <div class="lbl">validé par la direction</div>
+                </div>
+                <h3>// fiche projet</h3>
+                <div class="aside-stack">
+                    <div class="id-row"><span class="k">Rôle</span><span class="v">Conception &amp; dev</span></div>
+                    <div class="id-row"><span class="k">Contexte</span><span class="v">Alternance BP2I</span></div>
+                    <div class="id-row"><span class="k">Statut</span><span class="v">POC validé</span></div>
+                </div>
+                <div style="margin-top:18px;">
+                    <span class="chip-mini">Python</span>
+                    <span class="chip-mini">LLM</span>
+                    <span class="chip-mini">RAG</span>
+                    <span class="chip-mini">Recherche documentaire</span>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <a href="index.html#projets" class="to-top">↑ Voir les autres projets</a>
+    <p>Anis BOURMATTE</p>
+    <p class="small">© 2026 — Portfolio · BUT Informatique</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
